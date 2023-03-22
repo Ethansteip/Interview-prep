@@ -7,22 +7,24 @@
   <title>Document</title>
 </head>
 <body>
-  <img id="rainbow" src="" alt="" width="480">
+
+  <!-- <img src="images/photo1.jpg" alt="" width="480"> -->
+
 
   <script>
-    console.log("About to fetch a rainbow!");
 
-    catchRainbow().then(response => {
-      console.log("Yayyyy!");
-    }).catch(error => {
-      console.log(error);
-    });
+    const textPath = 'text/text.txt';
 
-    async function catchRainbow() {
-      const response = await fetch('rainbow.jpeg');
-      const blob = await response.blob();
-      document.getElementById('rainbow').src = URL.createObjectURL(blob);
-    }
+    fetchText(textPath);
+
+    async function fetchText(path) {
+      const response = await fetch(path);
+      const text = await response.text();
+      const poem = document.createElement("p");
+      poem.innerHTML = text;
+      document.body.append(poem);
+    };
+
 
     
   </script>
